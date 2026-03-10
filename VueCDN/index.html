@@ -28,6 +28,15 @@
                     <p v-else-if="inStock < 10 && inStock > 1">Almost of out {{inStock}}</p>
                     <p v-else>Out of Stock</p>
 
+                    <ul>
+                        <li v-for="detail in details">
+                            {{detail}}
+                        </li>
+                    </ul>
+
+                    <div v-for="variant in variants" :key="variant.id">
+                        {{variant.color}}
+                    </div>
                 </div>
             </div>
         </div>
@@ -44,6 +53,8 @@
           product_title: ref("T-Shirt"),
           image: ref("assets/images/t-shirt-blue.png"),
           inStock: ref(12),
+          details: ['50% Cotton', '30% polyester', '20% wool'],
+          variants: [{id:1, color:'blue'}, {id:2,color:'green'}],
           
         };
       },
