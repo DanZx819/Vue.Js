@@ -22,9 +22,12 @@
                      <img :src="image" alt="img-product">
                 </div>
                 <div class="product-info">
-                    <h1>T-Shirt</h1>
-                    <p>In Stock</p>
                     <!-- Info do produto-->
+                    <h1>{{product_title}}</h1>
+                    <p v-if="inStock > 10">In Stock</p>
+                    <p v-else-if="inStock < 10 && inStock > 1">Almost of out {{inStock}}</p>
+                    <p v-else>Out of Stock</p>
+
                 </div>
             </div>
         </div>
@@ -38,7 +41,9 @@
       setup() {
         
         return {       
+          product_title: ref("T-Shirt"),
           image: ref("assets/images/t-shirt-blue.png"),
+          inStock: ref(12),
           
         };
       },
