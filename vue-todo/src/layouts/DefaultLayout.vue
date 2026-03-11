@@ -1,7 +1,9 @@
 <template>
-  <v-app>
-    <View></View>
-  </v-app>
+  
+    <View>
+      <slot></slot>
+    </View>
+  
 </template>
 
 <script setup>

@@ -31,7 +31,10 @@
       <v-app-bar-title>To do List</v-app-bar-title>
     </v-app-bar>
 
-    <v-main> </v-main>
+    <v-main> 
+
+        <slot/>
+    </v-main>
   </v-app>
 </template>
 

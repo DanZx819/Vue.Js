@@ -1,11 +1,12 @@
 
 <script setup>
   import DefaultLayout from '@/layouts/DefaultLayout.vue';
+  import ListaComponent from '@/components/ListaComponent.vue';
 </script>
 
 <template>
   <DefaultLayout>
-    <h1>Daniel</h1>
+    <ListaComponent/>
   </DefaultLayout>
   
 </template>
