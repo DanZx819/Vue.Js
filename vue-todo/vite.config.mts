@@ -4,21 +4,27 @@ import Vue from '@vitejs/plugin-vue'
 import Fonts from 'unplugin-fonts/vite'
 import { defineConfig } from 'vite'
 import Vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
+import VueRouter from 'unplugin-vue-router/vite'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
+    VueRouter({
+      routesFolder: 'src/pages',
+    }),
+
     tailwindcss(),
+
     Vue({
       template: { transformAssetUrls },
     }),
-    // https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/vite-plugin#readme
+
     Vuetify({
       autoImport: true,
       styles: {
         configFile: 'src/styles/settings.scss',
       },
     }),
+
     Fonts({
       fontsource: {
         families: [
@@ -35,7 +41,9 @@ export default defineConfig({
       },
     }),
   ],
+
   define: { 'process.env': {} },
+
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('src', import.meta.url)),
@@ -50,6 +58,7 @@ export default defineConfig({
       '.vue',
     ],
   },
+
   server: {
     port: 3000,
   },
