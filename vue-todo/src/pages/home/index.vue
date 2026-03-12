@@ -1,12 +1,12 @@
 
 <script setup>
   import DefaultLayout from '@/layouts/DefaultLayout.vue';
-  import ListaComponent from '@/components/ListaComponent.vue';
+  import TodoListComponent from '@/components/TodoListComponent.vue';
 </script>
 
 <template>
   <DefaultLayout>
-    <ListaComponent/>
+    <TodoListComponent/>
   </DefaultLayout>
   
 </template>
