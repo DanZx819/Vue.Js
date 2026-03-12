@@ -1,14 +1,14 @@
 <template>
   <div>
-    <TodoListComponent/>
+    <TodoListComponent />
 
     <v-list lines="three" select-strategy="leaf">
-      <v-list-subheader>General</v-list-subheader>
+      <v-list-subheader>List</v-list-subheader>
       <v-list-item
         v-for="(task, index) in props.tasks"
         :key="index"
         :title="task.title"
-        :subtitle="task.subtitle" 
+        :subtitle="task.subtitle"
       >
         <template v-slot:prepend="{ isSelected, select }">
           <v-list-item-action start>
@@ -30,33 +30,40 @@
               </v-btn>
             </template>
             <v-list>
-              <v-list-item prepend-icon="$edit" value="1">
-                <v-list-item-title @click="toggle">Edit</v-list-item-title>
+              <v-list-item prepend-icon="$edit"   value="1" @click="toggle(index)">
+                <v-list-item-title> Editar</v-list-item-title>
               </v-list-item>
-              <v-list-item prepend-icon="mdi-delete" value="2">
-                <v-list-item-title> Delete</v-list-item-title>
+              <v-list-item prepend-icon="mdi-delete" value="2" @click="toggle(index)">
+                <v-list-item-title>Delete</v-list-item-title>
               </v-list-item>
             </v-list>
           </v-menu>
         </template>
       </v-list-item>
     </v-list>
-    <DialogTaskComponent :dialog="showDialogTaskFields" @toggle="toggle"/>
+    <DialogTaskComponent
+      :dialog="showDialogTaskFields"
+      @toggle="toggle"
+      :task="taskSelecionada"
+    />
   </div>
 </template>
 
 <script setup>
-
-import { defineProps, ref } from 'vue';
-import DialogTaskComponent from './DialogTaskFieldComponent.vue';
-
+import { defineProps, ref } from "vue";
+import DialogTaskComponent from "./DialogTaskFieldComponent.vue";
 
 const props = defineProps({
-  tasks: Array
+  tasks: Array,
 });
 
 const showDialogTaskFields = ref(false);
-const toggle = () =>{
+const toggle = (index) => {
   showDialogTaskFields.value = !showDialogTaskFields.value;
+  if (index != null) {
+    taskSelecionada.value = props.tasks[index];
+  }
 };
+
+const taskSelecionada = ref(0);
 </script>

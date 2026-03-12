@@ -1,6 +1,6 @@
 <template>
   <div class="text-center pa-4">
-    <v-dialog v-model="props.dialog" max-width="400" persistent>
+    <v-dialog v-model="props.dialog" min-width="400" max-width="600" persistent>
       <!--
     <template v-slot:activator="{ props: activatorProps }">
         <v-btn v-bind="activatorProps">
@@ -9,17 +9,26 @@
       </template>
     -->
 
-      <v-card
-        prepend-icon="mdi-map-marker"
-        text="Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running."
-        title="Use Google's location service?"
-      >
+      <v-card>
+        <br>
+
+        <v-card-title class="text-h5">Edit Task</v-card-title>
+        <v-card-text>
+          <v-text-field
+            clearable
+            label="Title"
+            v-model="props.task.title"
+          ></v-text-field>
+          <v-text-field
+            clearable
+            label="Description"
+            v-model="props.task.subtitle"
+          ></v-text-field>
+        </v-card-text>
         <template v-slot:actions>
           <v-spacer></v-spacer>
 
-          <v-btn @click="$emit('toggle')"> Disagree </v-btn>
-
-          <v-btn @click="$emit('toggle')"> Agree </v-btn>
+          <v-btn @click="$emit('toggle')"> Ok </v-btn>
         </template>
       </v-card>
     </v-dialog>
@@ -27,9 +36,10 @@
 </template>
 
 <script setup>
-import {ref, defineProps } from "vue";
+import { ref, defineProps } from "vue";
 
 const props = defineProps({
   dialog: Boolean,
+  task: Object,
 });
 </script>
