@@ -4,7 +4,7 @@
       <v-list>
         <v-list-item
           prepend-avatar="/public/download.jfif"
-          title="Daniel de Oliveira Zanchetta"
+          title="Daniel de Oliveira Zanchettta"
         >
           <template v-slot:append>
            
