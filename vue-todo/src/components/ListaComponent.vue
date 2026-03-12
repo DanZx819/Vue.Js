@@ -8,7 +8,7 @@
         v-for="(task, index) in props.tasks"
         :key="index"
         :title="task.title"
-        :subtitle="task.subtitle"
+        :subtitle="task.subtitle" 
       >
         <template v-slot:prepend="{ isSelected, select }">
           <v-list-item-action start>
