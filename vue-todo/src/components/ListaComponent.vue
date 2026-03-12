@@ -31,7 +31,7 @@
             </template>
             <v-list>
               <v-list-item prepend-icon="$edit" value="1">
-                <v-list-item-title>Edit</v-list-item-title>
+                <v-list-item-title @click="toggle">Edit</v-list-item-title>
               </v-list-item>
               <v-list-item prepend-icon="mdi-delete" value="2">
                 <v-list-item-title> Delete</v-list-item-title>
@@ -41,14 +41,22 @@
         </template>
       </v-list-item>
     </v-list>
-
+    <DialogTaskComponent :dialog="showDialogTaskFields" @toggle="toggle"/>
   </div>
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
+
+import { defineProps, ref } from 'vue';
+import DialogTaskComponent from './DialogTaskFieldComponent.vue';
+
 
 const props = defineProps({
   tasks: Array
 });
+
+const showDialogTaskFields = ref(false);
+const toggle = () =>{
+  showDialogTaskFields.value = !showDialogTaskFields.value;
+};
 </script>
