@@ -5,7 +5,7 @@
     <v-list lines="three" select-strategy="leaf">
       <v-list-subheader>List</v-list-subheader>
       <v-list-item
-        v-for="(task, index) in props.tasks"
+        v-for="(task, index) in taskStore.tasks"
         :key="index"
         :title="task.title"
         :subtitle="task.subtitle"
@@ -33,14 +33,14 @@
               <v-list-item
                 prepend-icon="$edit"
                 value="1"
-                @click="toggleEdit(index)"
+                @click="taskStore.toggleEdit(index)"
               >
                 <v-list-item-title> Editar</v-list-item-title>
               </v-list-item>
               <v-list-item
                 prepend-icon="mdi-delete"
                 value="2"
-                @click="toggleDelete(index)"
+                @click="taskStore.toggleDelete(index)"
               >
                 <v-list-item-title>Delete</v-list-item-title>
               </v-list-item>
@@ -50,48 +50,36 @@
       </v-list-item>
     </v-list>
     <DialogTaskComponent
-      :dialog="showDialogTaskFields"
-      @toggle="toggleEdit"
-      :task="taskSelecionada"
+      :dialog="taskStore.showDialogTaskFields"
+      @toggle="taskStore.toggleEdit"
+      :task="taskStore.tasks[taskStore.taskSelecionada]"
     />
     <DialogDeleteComponent
-      :dialog="showDialogDelete"
-      @toggle="toggleDelete"
-      :task="taskSelecionada"
-      @deleteTask="deleteTask"
+      :dialog="taskStore.showDialogDelete"
+      @toggle="taskStore.toggleDelete"
+      @deleteTask="taskStore.deleteTask"
+      :task="taskStore.tasks[taskStore.taskSelecionada]"
+
     />
   </div>
 </template>
 
 <script setup>
-import { defineProps, ref } from "vue";
+import { ref } from "vue";
 import DialogTaskComponent from "./DialogTaskFieldComponent.vue";
 import DialogDeleteComponent from "./DialogDeleteComponent.vue";
+import {useTaskStore} from "@/stores/task.js";
 
-const props = defineProps({
-  tasks: Array,
-});
+const taskStore = useTaskStore();
 
-const showDialogTaskFields = ref(false);
-const toggleEdit = (index) => {
-  showDialogTaskFields.value = !showDialogTaskFields.value;
-  if (index != null) {
-    taskSelecionada.value = props.tasks[index];
-  }
-};
-const showDialogDelete = ref(false);
 
-const toggleDelete = (index) => {
-  showDialogDelete.value = !showDialogDelete.value;
-  if (index != null) {
-    taskSelecionada.value = props.tasks[index];
-  }
-};
 
-const deleteTask = () =>{
-  props.tasks.splice(taskSelecionada.value, 1);
-  toggleDelete();
-}
 
-const taskSelecionada = ref(0);
+
+
+
+
+
+
+
 </script>
