@@ -7,7 +7,7 @@
       prepend-icon="mdi-folder-plus"
       @keyup.enter="taskStore.addTask"
     ></v-text-field>
-    <ListaComponent :tasks="taskStore.tasks" />
+    <ListaComponent/>
   </div>
 </template>
 
