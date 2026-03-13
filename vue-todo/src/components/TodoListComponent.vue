@@ -4,14 +4,14 @@
     <div class="add-task-card">
       <div class="card-header">
         <v-icon class="plus-icon">mdi-plus-circle</v-icon>
-        <h3 class="card-title">Nova Tarefa</h3>
+        <h3 class="card-title">New Task</h3>
       </div>
 
       <div class="input-wrapper">
         <v-text-field
           v-model="taskStore.titleTaskCreating"
           clearable
-          label="Digite sua tarefa aqui..."
+          label=""
           prepend-inner-icon="mdi-text-box-plus"
           variant="outlined"
           color="#42b883"
@@ -30,7 +30,7 @@
               :disabled="!isValid"
             >
               <v-icon left>mdi-plus</v-icon>
-              Adicionar
+              Add
             </v-btn>
           </template>
         </v-text-field>
@@ -39,7 +39,7 @@
       <!-- Dica rápida -->
       <div class="quick-tip">
         <v-icon class="tip-icon">mdi-lightbulb-outline</v-icon>
-        <span class="tip-text">Pressione <kbd>Enter</kbd> para adicionar rapidamente</span>
+        <span class="tip-text">Press <kbd>Enter</kbd>  to quickly add</span>
       </div>
     </div>
 

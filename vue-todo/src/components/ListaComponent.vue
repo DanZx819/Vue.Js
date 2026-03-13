@@ -6,7 +6,7 @@
     <div class="list-header">
       <div class="header-content">
         <v-icon class="header-icon">mdi-format-list-checks</v-icon>
-        <h2 class="header-title">Minhas Tarefas</h2>
+        <h2 class="header-title">My Tasks</h2>
         <v-chip class="task-counter" color="#42b883">
           {{ taskStore.tasks.length }}
         </v-chip>
