@@ -4,14 +4,7 @@ import { defineStore } from "pinia";
 export const useTaskStore = defineStore("task", {
   state: () => ({
     tasks: [
-      {
-        title: "Estudar Vue",
-        subtitle: "Estudar Vue com Vuetify",
-      },
-      {
-        title: "Estudar Vuetify",
-        subtitle: "Ler a documentação do Vuetify",
-      },
+      
     ],
     titleTaskCreating: "",
     showDialogDelete: false,
@@ -25,6 +18,7 @@ export const useTaskStore = defineStore("task", {
           title: this.titleTaskCreating,
         });
         this.titleTaskCreating = "";
+        this.salvarNavegador();
       } else {
         return console.log("Digita alguma coisa ai");
       }
@@ -38,12 +32,24 @@ export const useTaskStore = defineStore("task", {
     deleteTask() {
       this.tasks.splice(this.taskSelecionada, 1);
       this.toggleDelete();
+      this.salvarNavegador();
     },
     toggleEdit(index) {
       this.showDialogTaskFields = !this.showDialogTaskFields;
       if (index != null) {
         this.taskSelecionada = index;
+        
       }
+      this.salvarNavegador();
     },
+    salvarNavegador(){
+        localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    },
+    getTasks(){
+        let items =  localStorage.getItem('tasks');
+        if(items){
+            this.tasks = JSON.parse(items);
+        }
+    }
   },
 });

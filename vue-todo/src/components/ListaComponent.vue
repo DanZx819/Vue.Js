@@ -66,8 +66,8 @@
 
 <script setup>
 import { ref } from "vue";
-import DialogTaskComponent from "./DialogTaskFieldComponent.vue";
-import DialogDeleteComponent from "./DialogDeleteComponent.vue";
+import DialogTaskComponent from "@/components/DialogTaskFieldComponent.vue";
+import DialogDeleteComponent from "@/components/DialogDeleteComponent.vue";
 import {useTaskStore} from "@/stores/task.js";
 
 const taskStore = useTaskStore();

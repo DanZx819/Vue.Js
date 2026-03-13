@@ -14,9 +14,11 @@
 <script setup>
 import ListaComponent from "./ListaComponent.vue";
 import { useTaskStore } from "@/stores/task.js";
-import { ref } from "vue";
+import { onMounted } from "vue";
 
 const taskStore = useTaskStore();
-
+onMounted(() =>{
+  taskStore.getTasks();
+})
 
 </script>
