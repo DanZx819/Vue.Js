@@ -22,13 +22,13 @@
           :title="task.title"
           :subtitle="task.subtitle"
           class="task-item"
-          :class="{ 'task-completed': task.completed }"
+          :class="{ 'task-done': task.done }"
         >
-          <template v-slot:prepend="{ isSelected, select }">
+          <template v-slot:prepend>
             <v-list-item-action start>
               <v-checkbox-btn
-                :model-value="isSelected"
-                @update:model-value="select"
+                :model-value="task.done"
+                @click="taskStore.toggleDoneTask(index)"
                 color="#42b883"
                 class="task-checkbox"
               ></v-checkbox-btn>
@@ -167,10 +167,11 @@ const taskStore = useTaskStore();
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .task-item::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -198,21 +199,38 @@ const taskStore = useTaskStore();
   font-weight: 600;
   font-size: 16px;
   margin-bottom: 4px;
+  transition: all 0.3s ease;
 }
 
 .task-item :deep(.v-list-item-subtitle) {
   color: rgba(255, 255, 255, 0.7) !important;
   font-size: 14px;
+  transition: all 0.3s ease;
 }
 
-/* Tarefa completada */
-.task-completed :deep(.v-list-item-title) {
-  text-decoration: line-through;
-  opacity: 0.6;
-}
-
-.task-completed {
+/* Tarefa completada (CORRIGIDO) */
+.task-item.task-done {
   opacity: 0.7;
+  background: #151515 !important;
+  border-color: rgba(66, 184, 131, 0.1) !important;
+}
+
+.task-item.task-done :deep(.v-list-item-title) {
+  text-decoration: line-through;
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.task-item.task-done :deep(.v-list-item-subtitle) {
+  text-decoration: line-through;
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.task-item.task-done:hover {
+  opacity: 0.85;
+}
+
+.task-item.task-done::before {
+  background: rgba(66, 184, 131, 0.3);
 }
 
 /* ========== Checkbox ========== */
@@ -223,6 +241,17 @@ const taskStore = useTaskStore();
 .task-checkbox :deep(.v-icon) {
   color: #42b883 !important;
   filter: drop-shadow(0 0 4px rgba(66, 184, 131, 0.5));
+  transition: all 0.3s ease;
+}
+
+.task-checkbox:hover :deep(.v-icon) {
+  filter: drop-shadow(0 0 8px rgba(66, 184, 131, 0.8));
+  transform: scale(1.1);
+}
+
+.task-done .task-checkbox :deep(.v-icon) {
+  color: #42b883 !important;
+  filter: drop-shadow(0 0 6px rgba(66, 184, 131, 0.6));
 }
 
 /* ========== Botão de Ação ========== */

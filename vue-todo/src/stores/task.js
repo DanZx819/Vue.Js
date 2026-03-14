@@ -17,7 +17,8 @@ export const useTaskStore = defineStore("task", {
     addTask() {
       if (this.titleTaskCreating.length >= 5) {
         this.tasks.push({
-          title: this.titleTaskCreating,
+          title: this.titleTaskCreating,  
+          done: false
           
         });
         useAlert.notifyAlert("Task created");
@@ -56,6 +57,10 @@ export const useTaskStore = defineStore("task", {
         if(items){
             this.tasks = JSON.parse(items);
         }
+    },
+    toggleDoneTask(index){
+      this.tasks[index].done = !this.tasks[index].done;
+      this.salvarNavegador();
     }
   },
 });
