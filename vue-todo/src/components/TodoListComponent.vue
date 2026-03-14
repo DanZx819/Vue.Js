@@ -21,6 +21,7 @@
           hide-details="auto"
           density="comfortable"
         >
+        
           <template v-slot:append>
             <v-btn
               @click="handleAddTask"

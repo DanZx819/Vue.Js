@@ -33,7 +33,7 @@
         <template v-slot:actions>
           <v-spacer></v-spacer>
 
-          <v-btn @click="taskStore.toggleEdit()"> Ok </v-btn>
+          <v-btn @click="taskStore.updateTask()"> Ok </v-btn>
         </template>
       </v-card>
     </v-dialog>
