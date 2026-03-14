@@ -1,6 +1,8 @@
 // Utilities
 import { defineStore } from "pinia";
+import {useAlertStore} from "@/stores/alert.js"
 
+const useAlert = useAlertStore();
 export const useTaskStore = defineStore("task", {
   state: () => ({
     tasks: [
@@ -16,7 +18,9 @@ export const useTaskStore = defineStore("task", {
       if (this.titleTaskCreating.length >= 5) {
         this.tasks.push({
           title: this.titleTaskCreating,
+          
         });
+        useAlert.notifyAlert("Task created");
         this.titleTaskCreating = "";
         this.salvarNavegador();
       } else {
@@ -30,9 +34,11 @@ export const useTaskStore = defineStore("task", {
       }
     },
     deleteTask() {
+      useAlert.notifyAlert("Task Deleted");
       this.tasks.splice(this.taskSelecionada, 1);
       this.toggleDelete();
       this.salvarNavegador();
+      
     },
     toggleEdit(index) {
       this.showDialogTaskFields = !this.showDialogTaskFields;
