@@ -5,14 +5,14 @@
       :title="useAlert.title"
       type="success"
       variant="tonal"
-      class="sucesso"
+      class="sucesso animate__animated animate__fadeInLeft "
     ></v-alert>
   </div>
 </template>
 
 <script setup>
 import {useAlertStore } from "@/stores/alert.js";
-
+import 'animate.css';
 const useAlert = useAlertStore();
 
 

@@ -11,7 +11,7 @@ export const useAlertStore = defineStore('alert',{
             this.showAlert = true;
             setTimeout(() => {
                 this.showAlert = false;
-            }, 1000);
+            }, 2000);
         }
     }
 })
